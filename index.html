@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="el" class="scroll-smooth">
+<html lang="el" class="scroll-smooth overflow-x-hidden">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +17,8 @@
     <!-- Favicon -->
     <link rel="icon" href="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/6990321824813c648d6f2306.jpg">
 
-    <!-- Preload Hero Image for Performance -->
+    <!-- Preload Hero Images for Performance -->
+    <link rel="preload" as="image" href="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69902cc424813c89916ec20a.jpg" media="(max-width: 767px)">
     <link rel="preload" as="image" href="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69902e8a772de9df28f79cc2.jpg">
 
     <!-- Fonts -->
@@ -88,11 +89,18 @@
             --accent-green: #4A6C58;
         }
 
+        html {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
         body {
             font-family: 'Manrope', sans-serif;
             overflow-x: hidden;
+            width: 100%;
             background-color: #fffefa;
             color: #4a4a4a;
+            -webkit-font-smoothing: antialiased;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -104,33 +112,45 @@
             letter-spacing: 0.15em;
         }
 
-        /* Decoration Elements */
+        /* Decoration Elements - Hidden on mobile for performance */
         .decoration-left {
-            position: fixed;
-            bottom: -10%;
-            left: -5%;
-            width: 30vw;
-            height: 30vw;
-            background: radial-gradient(circle, rgba(238, 214, 208, 0.4) 0%, rgba(255, 255, 255, 0) 70%);
-            border-radius: 50%;
-            filter: blur(60px);
-            z-index: -1;
-            pointer-events: none;
-            animation: float 8s infinite ease-in-out;
+            display: none;
         }
 
         .decoration-right {
-            position: fixed;
-            top: 10%;
-            right: -5%;
-            width: 35vw;
-            height: 35vw;
-            background: radial-gradient(circle, rgba(232, 246, 246, 0.5) 0%, rgba(255, 255, 255, 0) 70%);
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: -1;
-            pointer-events: none;
-            animation: float 10s infinite ease-in-out reverse;
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .decoration-left {
+                display: block;
+                position: fixed;
+                bottom: -10%;
+                left: -5%;
+                width: 30vw;
+                height: 30vw;
+                background: radial-gradient(circle, rgba(238, 214, 208, 0.4) 0%, rgba(255, 255, 255, 0) 70%);
+                border-radius: 50%;
+                filter: blur(60px);
+                z-index: -1;
+                pointer-events: none;
+                animation: float 8s infinite ease-in-out;
+            }
+
+            .decoration-right {
+                display: block;
+                position: fixed;
+                top: 10%;
+                right: -5%;
+                width: 35vw;
+                height: 35vw;
+                background: radial-gradient(circle, rgba(232, 246, 246, 0.5) 0%, rgba(255, 255, 255, 0) 70%);
+                border-radius: 50%;
+                filter: blur(80px);
+                z-index: -1;
+                pointer-events: none;
+                animation: float 10s infinite ease-in-out reverse;
+            }
         }
 
         .reveal {
@@ -243,7 +263,7 @@
     <header class="relative h-auto min-h-screen w-full overflow-hidden flex items-center justify-center pt-48 pb-24 md:pt-64">
         <!-- Parallax Background -->
         <div class="absolute inset-0 z-0">
-            <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69902cc424813c89916ec20a.jpg" alt="Therapy Office Environment" class="w-full h-full object-cover object-center scale-105 animate-[float_15s_ease-in-out_infinite_alternate]" loading="eager" fetchpriority="high">
+            <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69902cc424813c89916ec20a.jpg" alt="Therapy Office Environment" class="w-full h-full object-cover object-center scale-105 md:animate-[float_15s_ease-in-out_infinite_alternate]" loading="eager" fetchpriority="high">
             <div class="absolute inset-0 bg-gradient-to-r from-palette-cream/95 via-palette-cream/60 to-transparent"></div>
         </div>
 
@@ -308,7 +328,7 @@
                 <div class="lg:col-span-5 reveal relative">
                     <!-- Updated background for the image container -->
                     <div class="relative p-6 bg-brand-baby-pink rounded-3xl shadow-pink-glow rotate-1 border border-white/40">
-                        <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69902e8a772de97a0ef79cc1.jpg" alt="Ελένη Δηλανά Portrait" class="w-full h-auto rounded-xl shadow-glass z-10 relative -rotate-1 transition-transform hover:rotate-0 duration-500">
+                        <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69902e8a772de97a0ef79cc1.jpg" loading="lazy" alt="Ελένη Δηλανά Portrait" class="w-full h-auto rounded-xl shadow-glass z-10 relative -rotate-1 transition-transform hover:rotate-0 duration-500">
                     </div>
                 </div>
                 
@@ -480,49 +500,49 @@
             <div class="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
                 
                 <div class="reveal break-inside-avoid relative group overflow-hidden rounded-2xl cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500" onclick="openLightbox(0)">
-                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69902d65899b884ac97e3dec.jpg" class="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105" alt="Office View">
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69902d65899b884ac97e3dec.jpg" decoding="async" fetchpriority="low" class="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105" alt="Office View">
                     <div class="absolute inset-0 bg-brand-text-teal/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <i data-lucide="maximize-2" class="text-white w-8 h-8 drop-shadow-lg"></i>
                     </div>
                 </div>
 
                 <div class="reveal break-inside-avoid relative group overflow-hidden rounded-2xl cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500" onclick="openLightbox(1)">
-                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69902cc4c0866595edc8518f.jpg" class="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105" alt="Detail">
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69902cc4c0866595edc8518f.jpg" decoding="async" fetchpriority="low" class="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105" alt="Detail">
                      <div class="absolute inset-0 bg-brand-text-rose/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <i data-lucide="maximize-2" class="text-white w-8 h-8 drop-shadow-lg"></i>
                     </div>
                 </div>
 
                 <div class="reveal break-inside-avoid relative group overflow-hidden rounded-2xl cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500" onclick="openLightbox(2)">
-                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69902d65c08665eca4c85c1e.jpg" class="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105" alt="Detail">
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69902d65c08665eca4c85c1e.jpg" decoding="async" fetchpriority="low" class="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105" alt="Detail">
                     <div class="absolute inset-0 bg-brand-text-teal/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <i data-lucide="maximize-2" class="text-white w-8 h-8 drop-shadow-lg"></i>
                     </div>
                 </div>
 
                 <div class="reveal break-inside-avoid relative group overflow-hidden rounded-2xl cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500" onclick="openLightbox(3)">
-                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69902d65008498e1f764a2cc.jpg" class="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105" alt="Interior">
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69902d65008498e1f764a2cc.jpg" decoding="async" fetchpriority="low" class="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105" alt="Interior">
                     <div class="absolute inset-0 bg-brand-text-rose/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <i data-lucide="maximize-2" class="text-white w-8 h-8 drop-shadow-lg"></i>
                     </div>
                 </div>
                 
                  <div class="reveal break-inside-avoid relative group overflow-hidden rounded-2xl cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500" onclick="openLightbox(5)">
-                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69902d650084983bde64a2cd.jpg" class="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105" alt="Atmosphere">
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69902d650084983bde64a2cd.jpg" decoding="async" fetchpriority="low" class="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105" alt="Atmosphere">
                     <div class="absolute inset-0 bg-brand-text-teal/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <i data-lucide="maximize-2" class="text-white w-8 h-8 drop-shadow-lg"></i>
                     </div>
                 </div>
                 
                 <div class="reveal break-inside-avoid relative group overflow-hidden rounded-2xl cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500" onclick="openLightbox(6)">
-                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69902cc4c08665b5b0c85190.jpg" class="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105" alt="Seating">
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69902cc4c08665b5b0c85190.jpg" decoding="async" fetchpriority="low" class="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105" alt="Seating">
                     <div class="absolute inset-0 bg-brand-text-rose/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <i data-lucide="maximize-2" class="text-white w-8 h-8 drop-shadow-lg"></i>
                     </div>
                 </div>
 
                 <div class="reveal break-inside-avoid relative group overflow-hidden rounded-2xl cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500" onclick="openLightbox(7)">
-                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69902cc4899b88bf0f7e323b.jpg" class="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105" alt="Office Detail">
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69902cc4899b88bf0f7e323b.jpg" decoding="async" fetchpriority="low" class="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105" alt="Office Detail">
                     <div class="absolute inset-0 bg-brand-text-teal/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <i data-lucide="maximize-2" class="text-white w-8 h-8 drop-shadow-lg"></i>
                     </div>
