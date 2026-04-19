@@ -61,7 +61,7 @@
   .hero p.lead{font-size:1.05rem;max-width:520px;margin:1.75rem 0 2.25rem}
   .hero-visual{aspect-ratio:4/5;background:linear-gradient(160deg,var(--blush) 0%,var(--sand) 100%);border-radius:280px 280px 24px 24px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
   .hero-visual::before{content:"";position:absolute;inset:30px;border:1px solid rgba(31,37,65,.25);border-radius:260px 260px 12px 12px;z-index:1;}
-  .hero-tag{position:absolute;bottom:30px;left:30px;background:var(--bg);padding:14px 18px;border-radius:12px;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);box-shadow:0 8px 30px rgba(31,37,65,.08)}
+  .hero-tag{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);background:var(--bg);padding:14px 24px;border-radius:12px;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);box-shadow:0 8px 30px rgba(31,37,65,.15);z-index:2;white-space:nowrap;}
 
   /* SECTION */
   section{padding:110px 0}
@@ -92,19 +92,48 @@
   .services h2,.services .section-head p{color:var(--bg)}
   .services .eyebrow{color:var(--sand)}
   .services .divider{background:var(--bg);opacity:.5}
-  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-  @media(max-width:900px){.services-grid{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:600px){.services-grid{grid-template-columns:1fr}}
-  .svc{padding:36px 28px;border:1px solid rgba(246,241,231,.15);border-radius:18px;background:rgba(246,241,231,.03);transition:background .3s}
-  .svc:hover{background:rgba(246,241,231,.07)}
-  .svc .num{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:.95rem;color:var(--sand);margin-bottom:18px}
+  
+  .services-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:24px}
+  .svc{flex:1 1 calc(33.333% - 24px);min-width:280px;padding:36px 28px;border:1px solid rgba(246,241,231,.15);border-radius:18px;background:rgba(246,241,231,.03);transition:background .3s, transform .3s;display:flex;flex-direction:column;align-items:center;text-align:center;}
+  .svc:hover{background:rgba(246,241,231,.07);transform:translateY(-4px);}
   .svc h3{color:var(--bg);margin-bottom:14px}
   .svc p{color:rgba(246,241,231,.75);font-size:.94rem;margin-bottom:18px}
-  .svc .tags{display:flex;flex-wrap:wrap;gap:8px}
+  .svc .tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
   .svc .tag{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;padding:6px 12px;border:1px solid rgba(246,241,231,.25);border-radius:999px;color:rgba(246,241,231,.85)}
-  .svc.wide{grid-column:span 3}
-  @media(max-width:900px){.svc.wide{grid-column:span 2}}
-  @media(max-width:600px){.svc.wide{grid-column:span 1}}
+  .svc.wide{flex:1 1 calc(50% - 24px);max-width:500px;}
+  
+  @media(max-width:900px){.svc{flex:1 1 calc(50% - 24px)}}
+  @media(max-width:600px){.svc{flex:1 1 100%}}
+
+  .svc-icon-wrapper {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 24px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .svc-icon-circle {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    z-index: 0;
+    opacity: 0.15;
+  }
+  .svc:nth-child(1) .svc-icon-circle { background: #9db1c9; }
+  .svc:nth-child(2) .svc-icon-circle { background: #c5a396; }
+  .svc:nth-child(3) .svc-icon-circle { background: #e0cebe; }
+  .svc:nth-child(4) .svc-icon-circle { background: #b0bba6; }
+  .svc:nth-child(5) .svc-icon-circle { background: #9db1c9; }
+  .svc-icon-wrapper svg {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    stroke: var(--bg);
+  }
 
   /* SPACE */
   .space-grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:140px;gap:14px}
@@ -184,7 +213,7 @@
     </div>
     <div class="hero-visual">
       <img src="https://github.com/agelmet/PALAMIDI/blob/main/2023-10-24-2.jpg?raw=true" alt="Χριστίνη Παλαμήδη" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: 0;" />
-      <div class="hero-tag" style="position: relative; z-index: 2;">Αθήνα · Δια ζώσης & Online</div>
+      <div class="hero-tag">Αθήνα · Δια ζώσης & Online</div>
     </div>
   </div>
 </section>
@@ -248,31 +277,46 @@
     </div>
     <div class="services-grid">
       <div class="svc">
-        <div class="num">— 01</div>
+        <div class="svc-icon-wrapper">
+          <div class="svc-icon-circle"></div>
+          <svg viewBox="0 0 100 100"><path d="M 0 50 L 30 50 C 40 20, 60 80, 70 50 L 100 50" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
         <h3>Τραύμα & PTSD (EMDR)</h3>
         <p>Βοηθάμε τον εγκέφαλο να "ξεμπλοκάρει" και να επεξεργαστεί επώδυνες αναμνήσεις και βαθιές φοβίες χωρίς να απαιτείται εκτενής συζήτηση του γεγονότος.</p>
         <div class="tags"><span class="tag">Συνεδρία EMDR · 90'</span><span class="tag">Φοβίες</span></div>
       </div>
       <div class="svc">
-        <div class="num">— 02</div>
+        <div class="svc-icon-wrapper">
+          <div class="svc-icon-circle"></div>
+          <svg viewBox="0 0 100 100"><path d="M 0 50 L 20 50 Q 30 20, 40 50 T 60 50 Q 70 80, 80 50 L 100 50" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
         <h3>Άγχος & Πανικός (CBT)</h3>
         <p>Δουλεύουμε συνεργατικά για να αναγνωρίσουμε τις αρνητικές σκέψεις. Μέσα από τεχνικές χαλάρωσης και σταδιακή έκθεση, αποκτάτε τον έλεγχο.</p>
         <div class="tags"><span class="tag">Συνεδρία CBT · 50'</span><span class="tag">Γενικευμένο Άγχος</span></div>
       </div>
       <div class="svc">
-        <div class="num">— 03</div>
+        <div class="svc-icon-wrapper">
+          <div class="svc-icon-circle"></div>
+          <svg viewBox="0 0 100 100"><path d="M 0 50 L 25 50 A 12 12 0 1 1 50 50 A 12 12 0 1 0 75 50 L 100 50" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
         <h3>Θλίψη & Ψυχοσωματικά</h3>
         <p>Ασφαλής χώρος για να νοηματοδοτήσετε την απώλεια, να ρυθμίσετε έντονα συναισθήματα θυμού και να ανακουφίσετε ψυχοσωματικά συμπτώματα.</p>
         <div class="tags"><span class="tag">Συνεδρία · 50'</span><span class="tag">Διαχείριση Θυμού</span></div>
       </div>
-      <div class="svc">
-        <div class="num">— 04</div>
+      <div class="svc wide">
+        <div class="svc-icon-wrapper">
+          <div class="svc-icon-circle"></div>
+          <svg viewBox="0 0 100 100"><path d="M 0 50 L 30 50 A 10 10 0 1 1 50 50 A 10 10 0 1 0 70 50 L 100 50" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
         <h3>Σχέσεις & Ταυτότητα (ΛΟΑΤΚΙ+)</h3>
         <p>Επιβεβαιωτικός, ασφαλής χώρος (safe space). Εργαζόμαστε πάνω στη βελτίωση της αυτοεκτίμησης, επαγγελματικό προσανατολισμό και διαπροσωπικές σχέσεις.</p>
         <div class="tags"><span class="tag">Σχέσεις · 50'</span><span class="tag">Επαγγ. Προσανατολισμός · 70'</span></div>
       </div>
       <div class="svc wide">
-        <div class="num">— 05</div>
+        <div class="svc-icon-wrapper">
+          <div class="svc-icon-circle"></div>
+          <svg viewBox="0 0 100 100"><path d="M0 50 L 30 50 L 30 35 L 70 35 L 70 50 L 100 50" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
         <h3>Διαδικτυακή Ψυχοθεραπεία (Online)</h3>
         <p>Αναγνωρίζοντας τις ανάγκες της σύγχρονης εποχής, όλες οι υπηρεσίες προσφέρονται και διαδικτυακά. Διασφαλίζουμε απόλυτη εχεμύθεια και ευελιξία, επιτρέποντάς σας να συνδεθείτε από την άνεση του προσωπικού σας χώρου.</p>
         <div class="tags"><span class="tag">Online Συνεδρία · 50'</span></div>
